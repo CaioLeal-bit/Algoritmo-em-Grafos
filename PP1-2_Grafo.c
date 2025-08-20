@@ -119,5 +119,17 @@ int main() {
 
     printf("\n\n");
 
+    //Tranformar matriz de Adjacência para lista
+    printf("\nLista de Adjacência:\n");
+    for (int i = 0; i < vertices; i++) {
+        printf("V%d ", i+1);
+        for (int j = 0; j < vertices; j++) {
+            if (matrizAdj[i][j] == 1) {
+                printf("-> V%d", j+1);
+            }
+        }
+        printf("\n");
+    }
+
     return 0;
 }
