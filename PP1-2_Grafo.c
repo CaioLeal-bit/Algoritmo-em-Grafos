@@ -76,5 +76,48 @@ int main() {
         printf("Grau de saída do vértice %d: %d\n", i+1, grauSaida);
     }
 
+    //Transformação de matriz de Incidência para Matriz de Adjacência
+    int matrizAdj[vertices][vertices];
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            matrizAdj[i][j] = 0;
+        }
+    }
+
+    for (int j = 0; j < arestas; j++) {
+        int origem = -1, destino = -1;
+        for (int i = 0; i < vertices; i++) {
+            if (matriz[i][j] == 1) {
+                origem = i;
+            }
+            if (matriz[i][j] == -1) {
+                destino = i;
+            }
+        }
+        if (origem != -1 && destino != -1) {
+            matrizAdj[origem][destino] = 1;
+        }
+    }
+
+    // Mostrar a matriz de adjacência
+    printf("\nMatriz de Adjacência:\n    ");
+    for (int j = 0; j < vertices; j++) {
+        printf("V%d ", j+1);
+    }
+
+    printf("\n  ");
+    for (int j = 0; j < vertices; j++) {
+        printf("---");
+    }
+
+    for (int i = 0; i < vertices; i++) {
+        printf("\nV%d | ", i+1);
+        for (int j = 0; j < vertices; j++) {
+            printf("%2d ", matrizAdj[i][j]);
+        }
+    }
+
+    printf("\n\n");
+
     return 0;
 }
