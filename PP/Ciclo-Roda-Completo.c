@@ -1,6 +1,21 @@
-//Verifica se um grafo qualquer é um ciclo, uma roda ou um grafo completo.
+//Verifica se um grafo qualquer é um ciclo, uma roda ou um grafo completo e dizer se é euleriano ou não.
 
 #include <stdio.h>
+
+int verificarEuleriano(int n, int grafo[n][n]){
+    //Verifica se é Euleriano em grafos completos(kn)
+    if(n % 2 == 0){
+        for(int i=0; i<n; i++){
+            int grau = 0;
+            for(int j=0; j<n; j++){
+                grau += grafo[i][j];
+            }
+        if(grau % 2 != 0) return 0;
+        }
+    }
+    return 1;
+}
+
 
 int verificarCiclo(int n, int grafo[n][n]){
     if(n<3) return 0;
@@ -79,10 +94,17 @@ int main()
     
     if(verificarCompleto(n, grafo)) {
         printf("O grafo e completo!\n");
+        if(verificarEuleriano(n, grafo)){
+            printf("O grafo e Euleriano!\n");
+        } else {
+            printf("O grafo não é Euleriano!\n");
+        }
     } else if(verificarCiclo(n, grafo)){
         printf("O grafo e um ciclo!\n");
+        printf("O grafo é Euleriano!\n");
     } else if(verificarRoda(n, grafo)){
-        printf("O grafo e uma roda!\n");
+        printf("O grafo é uma roda!\n");
+        printf("O grafo não é Euleriano!\n");
     } else {
         printf("O grafo não e nenhuma das opcoes\n");
     }
